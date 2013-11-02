@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Umbrella.BL.Services;
 
@@ -7,7 +6,7 @@ namespace Umbrella.UI
 {
     public class MainUI
     {
-        private readonly OperationService operationService = new OperationService();
+        public readonly OperationService OperationService = new OperationService();
 
         private readonly MainWindow window;
 
@@ -18,12 +17,7 @@ namespace Umbrella.UI
 
         public void Init()
         {
-            var operations = operationService.GetTaken();
-            foreach (var operation in operations)
-            {
-                var item = new ListBoxItem { Content = operation.User.LastName };
-                window.TakenListBox.Items.Add(item);
-            }
+            window.TakenListBox.ItemsSource = OperationService.GetTaken();
         }
 
         public void OnKeyDown(KeyEventArgs args)

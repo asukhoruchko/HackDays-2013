@@ -32,6 +32,8 @@ namespace Umbrella.UI
             keyboardManager = new KeyboardManager(this);
             keyboardManager.KeyDown += KeyboardManagerOnKeyDown;
             keyboardManager.UmbrellaKeyDown += KeyboardManagerOnUmbrellaKeyDown;
+
+            WindowState = WindowState.Maximized;
         }
 
 

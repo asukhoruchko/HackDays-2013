@@ -9,7 +9,7 @@ namespace Umbrella.BL.Entity
         [MapField("Operation_Id"), PrimaryKey, NonUpdatable]
         public int Id { get; set; }
         public User User { get; set; }
-        public DateTime? Taken { get; set; }
+        public DateTime Taken { get; set; }
         public DateTime? Returned { get; set; }
     }
 }

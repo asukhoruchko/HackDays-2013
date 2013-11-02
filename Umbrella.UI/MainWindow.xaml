@@ -1,20 +1,49 @@
 ﻿<Window x:Class="Umbrella.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:entity="clr-namespace:Umbrella.BL.Entity;assembly=Umbrella.BL"
+        Title="Зонтоман : ПАКВУПСЗМУ - 1" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="{x:Type Control}" x:Key="baseStyle">
+            <Setter Property="FontSize" Value="30" />
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource baseStyle}"></Style>
+    </Window.Resources>
     <Grid>
-        <Grid Name="OperationLogGrid">
-            <ListBox Name="TakenListBox"/>
-        </Grid>
-        <Grid Margin="0,0,13,2" Name="LoginGrid" Visibility="Hidden">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="203*"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Label Content="Логин:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="10,24,0,0" VerticalAlignment="Top" Width="63" />
-            <Label Content="Пароль:" HorizontalAlignment="Left" Margin="10,55,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" RenderTransformOrigin="-0.079,-0.654" Width="63"/>
-            <TextBox Name="LoginTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
-            <PasswordBox Name="PasswordTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,59,0,0" VerticalAlignment="Top" Width="170"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Media/umbrella.png"/>
+            <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="OperationLogGrid">
+                <ListBox Name="TakenListBox">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="entity:Operation">
+                            <DockPanel>
+                                <TextBlock Text="{Binding Path=User.LastName}" />
+                                <TextBlock Text=" забрал зонтик "/>
+                                <TextBlock Text="{Binding Path=Taken, StringFormat=d}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="LoginGrid" Visibility="Hidden">
+                <Label Content="Логин:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="15,24,0,0" VerticalAlignment="Top" Width="107" />
+                <Label Content="Пароль:" HorizontalAlignment="Left" Margin="15,88,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" RenderTransformOrigin="-0.079,-0.654" Width="124"/>
+                <TextBox Name="LoginTextBox" HorizontalAlignment="Left" Height="37" Margin="139,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" RenderTransformOrigin="0.5,0.5"/>
+                <PasswordBox Name="PasswordTextBox" HorizontalAlignment="Left" Height="32" Margin="139,97,0,0" VerticalAlignment="Top" Width="230"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

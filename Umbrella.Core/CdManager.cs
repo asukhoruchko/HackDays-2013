@@ -33,8 +33,10 @@ namespace Umbrella.Core
 
             string returnString = string.Empty;
             mciSendString("open " + driveLetter + ": type CDaudio shareable alias drive" + driveLetter, returnString, 0, 0);
-            int result = mciSendString("set drive" + driveLetter + " door open", returnString, 0, 0);
-            Console.Out.WriteLine("Set drive:" + result);
+            
+            int result = -1;
+            while (result != 0)
+                result = mciSendString("set drive" + driveLetter + " door open", returnString, 0, 0);
         }
 
         private void CloseDrive(object data)
@@ -44,8 +46,10 @@ namespace Umbrella.Core
             string returnString = string.Empty;
 
             mciSendString("open " + driveLetter + ": type CDaudio shareable alias drive" + driveLetter, returnString, 0, 0);
-            int result = mciSendString("set drive" + driveLetter + " door closed", returnString, 0, 0);
-            Console.Out.WriteLine("Set drive:" + result);
+
+            int result = -1;
+            while (result != 0)
+                result = mciSendString("set drive" + driveLetter + " door closed", returnString, 0, 0);
         }
     }
 }

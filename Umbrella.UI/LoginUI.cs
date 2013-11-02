@@ -31,6 +31,9 @@ namespace Umbrella.UI
             {
                 userService.Authenticate(window.LoginTextBox.Text, window.PasswordTextBox.Password);
                 umbrellaService.Do();
+                window.OperationLogGrid.Visibility = Visibility.Visible;
+                window.LoginGrid.Visibility = Visibility.Hidden;
+                window.UmbrellaAppState = UmbrellaAppState.Process;
             }
             catch (InvalidUserException e)
             {
