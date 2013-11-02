@@ -7,8 +7,8 @@
     <ProjectGuid>{C284F4B4-6779-4E0F-A5B0-AA882DBD6FC8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ambrella_BL</RootNamespace>
-    <AssemblyName>Ambrella-BL</AssemblyName>
+    <RootNamespace>Umbrella.BL</RootNamespace>
+    <AssemblyName>Umbrella.BL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

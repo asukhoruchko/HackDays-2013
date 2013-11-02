@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Ambrella_Core
+namespace Umbrella.Core
 {
     public class CdManager
     {

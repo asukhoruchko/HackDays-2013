@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace Ambrella_Core
+namespace Umbrella.Core
 {
     public delegate void UmbrellaKeyPressed(object sender, KeyEventArgs args);
     

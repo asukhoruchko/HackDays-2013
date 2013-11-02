@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambrella-BL", "Ambrella-BL\Ambrella-BL.csproj", "{C284F4B4-6779-4E0F-A5B0-AA882DBD6FC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbrella.BL", "Umbrella.BL\Umbrella.BL.csproj", "{C284F4B4-6779-4E0F-A5B0-AA882DBD6FC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambrella-UI", "Ambrella-UI\Ambrella-UI.csproj", "{5269848A-9EBD-4881-8046-29298D8086A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbrella.UI", "Umbrella.UI\Umbrella.UI.csproj", "{5269848A-9EBD-4881-8046-29298D8086A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambrella-Core", "Ambrella-Core\Ambrella-Core.csproj", "{3B84C4A9-7159-4C59-9680-417E85446EFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbrella.Core", "Umbrella.Core\Umbrella.Core.csproj", "{3B84C4A9-7159-4C59-9680-417E85446EFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
