@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Umbrella.BL.Database;
 using Umbrella.BL.Entity;
 using Umbrella.BL.Exceptions;
 using Umbrella.BL.Services;
@@ -26,11 +27,13 @@ namespace Umbrella.UI
                 return;
 
             var authenticationManager = new AuthenticationManager();
-            var userService = new UserService(authenticationManager);
+            var userService = new UserService(
+                authenticationManager,
+                new SessionFactory("default", 10));
 
             try
             {
-                userService.Authentication(LoginTextBox.Text, PasswordTextBox.Password);
+                userService.Authenticate(LoginTextBox.Text, PasswordTextBox.Password);
                 umbrellaService.Do();
             }
             catch (InvalidUserException e)

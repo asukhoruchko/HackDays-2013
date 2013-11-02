@@ -1,4 +1,6 @@
 ﻿using System;
+using BLToolkit.DataAccess;
+using Umbrella.BL.Database;
 using Umbrella.BL.Entity;
 using Umbrella.BL.Exceptions;
 using Umbrella.Core;
@@ -6,20 +8,26 @@ using Umbrella.Core;
 namespace Umbrella.BL.Services
 {
     public sealed class UserService
-    {
+    {        
         private readonly AuthenticationManager manager;
+        private readonly ISessionFactory sessionFactory;
 
-        public UserService(AuthenticationManager manager)
+        public UserService(AuthenticationManager manager, ISessionFactory sessionFactory)
         {
             this.manager = manager;
+            this.sessionFactory = sessionFactory;
         }
 
-        public void Authentication(string login, string password)
+        public User Authenticate(string login, string password)
         {
             if (!manager.IsVIAcodeUser(login, password))
             {
                 throw new InvalidUserException();
             }
+
+            var result = GetUser(login) ?? Create(login);
+
+            return result;
         }
 
         public void Update(User user)
@@ -27,14 +35,40 @@ namespace Umbrella.BL.Services
             throw new NotImplementedException();
         }
 
-        private void Create(User user)
+        private User Create(string login)
         {
+            var user = new User
+                {
+                    Login = login,
+                    LastName = login.Substring(1)
+                };
             
+            using (var session = sessionFactory.OpenSession())
+            using (var transaction = session.BeginTransaction())
+            {
+                var userAccessor = DataAccessor.CreateInstance<UserAccessor>(session);
+
+                userAccessor.Insert(user);
+
+                transaction.CommitTransaction();
+
+                //TODO: We need this to get and ID. Normally it should be done via Accessor. Some issues occured, skipping now
+                user = GetUser(login); 
+            }
+
+            return user;
         }
 
         private User GetUser(string login)
         {
-            throw new NotImplementedException();
+            using (var session = sessionFactory.OpenSession())
+            {
+                var userAccessor = DataAccessor.CreateInstance<UserAccessor>(session);
+
+                var result = userAccessor.GetByLogin(login);
+
+                return result;
+            }
         }
     }
 }
