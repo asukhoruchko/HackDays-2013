@@ -14,15 +14,12 @@ namespace Umbrella.BL.Services
             this.manager = manager;
         }
 
-        public User Authentificate(string login, string password)
+        public void Authentication(string login, string password)
         {
             if (!manager.IsVIAcodeUser(login, password))
             {
                 throw new InvalidUserException();
             }
-            
-
-            throw new NotImplementedException();
         }
 
         public void Update(User user)

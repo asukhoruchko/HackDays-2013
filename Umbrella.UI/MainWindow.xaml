@@ -3,6 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <ListBox Name="Taken"/>
+        <Grid Name="OperationLogGrid">
+            <ListBox Name="TakenListBox"/>
+        </Grid>
+        <Grid Margin="0,0,13,2" Name="LoginGrid" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="203*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Логин:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="10,24,0,0" VerticalAlignment="Top" Width="63" />
+            <Label Content="Пароль:" HorizontalAlignment="Left" Margin="10,55,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" RenderTransformOrigin="-0.079,-0.654" Width="63"/>
+            <TextBox Name="LoginTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+            <PasswordBox Name="PasswordTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,59,0,0" VerticalAlignment="Top" Width="170"/>
+        </Grid>
     </Grid>
 </Window>

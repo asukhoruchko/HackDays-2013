@@ -31,7 +31,7 @@ namespace Umbrella.BL.Services
 
         public void DoTake(User user)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
