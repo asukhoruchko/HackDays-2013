@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Umbrella.Core;
 
@@ -13,6 +14,8 @@ namespace Umbrella.UI
 
     public partial class MainWindow : Window
     {
+        private readonly ImageComposer imageComposer = new ImageComposer();
+        
         public KeyboardManager KeyboardManager;
         public UmbrellaAppState UmbrellaAppState;
         
@@ -28,7 +31,8 @@ namespace Umbrella.UI
 
             KeyboardManager = new KeyboardManager(this);
             KeyboardManager.KeyDown += KeyboardManagerOnKeyDown;
-            KeyboardManager.UmbrellaKeyDown += KeyboardManagerOnUmbrellaKeyDown;
+            KeyboardManager.UmbrellaKeyDown += KeyboardManagerOnUmbrella;
+            KeyboardManager.UmbreallaKeyUp += KeyboardManagerOnUmbrella;
 
             LoginUI = new LoginUI(this);
             MainUI = new MainUI(this);
@@ -36,15 +40,13 @@ namespace Umbrella.UI
             MainUI.Init();
 
             WindowState = WindowState.Maximized;
+
+            UmbrellaStatusesImage.Source = imageComposer.Combine(KeyboardManager.UmbrellaStatuses);
         }
 
-
-        private void KeyboardManagerOnUmbrellaKeyDown(object sender, KeyEventArgs args)
+        private void KeyboardManagerOnUmbrella(object sender, KeyEventArgs args)
         {
-            if (UmbrellaAppState == UmbrellaAppState.Process)
-            {
-                // Добавить перерисовку зонтика.
-            }   
+            UmbrellaStatusesImage.Source = imageComposer.Combine(KeyboardManager.UmbrellaStatuses);
         }
 
         private void KeyboardManagerOnKeyDown(object sender, KeyEventArgs args)

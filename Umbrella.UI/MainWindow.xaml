@@ -24,7 +24,7 @@
                 <RowDefinition Height="5*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Image Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Media/umbrella.png"/>
+            <Image Name="UmbrellaStatusesImage"  Grid.Column="0" Grid.Row="1" Margin="30,0,0,0"/>
             <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="OperationLogGrid">
                 <ListBox Name="TakenListBox">
                     <ListBox.ItemTemplate>
@@ -40,10 +40,10 @@
             </Grid>
             <Label Name="MessageLabel" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalAlignment="Top"/>
             <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="LoginGrid" Visibility="Hidden">
-                <Label Content="Логин:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="15,24,0,0" VerticalAlignment="Top" Width="107" />
-                <Label Content="Пароль:" HorizontalAlignment="Left" Margin="15,88,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" RenderTransformOrigin="-0.079,-0.654" Width="124"/>
-                <TextBox Name="LoginTextBox" HorizontalAlignment="Left" Height="37" Margin="139,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" RenderTransformOrigin="0.5,0.5"/>
-                <PasswordBox Name="PasswordTextBox" HorizontalAlignment="Left" Height="32" Margin="139,97,0,0" VerticalAlignment="Top" Width="230"/>
+                <Label Content="Логин:" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="15,30,0,0" VerticalAlignment="Top" Width="107" />
+                <Label Content="Пароль:" HorizontalAlignment="Left" Margin="15,90,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" RenderTransformOrigin="-0.079,-0.654" Width="124"/>
+                <TextBox Name="LoginTextBox" HorizontalAlignment="Left" Height="48" Margin="139,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" RenderTransformOrigin="0.5,0.5"/>
+                <PasswordBox Name="PasswordTextBox" HorizontalAlignment="Left" Height="48" Margin="139,97,0,0" VerticalAlignment="Top" Width="230"/>
             </Grid>
         </Grid>
     </Grid>

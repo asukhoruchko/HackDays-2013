@@ -1,11 +1,13 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Umbrella.Core
 {
     public delegate void UmbrellaKeyDown(object sender, KeyEventArgs args);
     public delegate void KeyDown(object sender, KeyEventArgs args);
-    
+    public delegate void UmbrellaKeyUp(object sender, KeyEventArgs args);
+
     public class KeyboardManager
     {
         private const Key UMBRELLA_01_KEY = Key.F2;
@@ -16,11 +18,30 @@ namespace Umbrella.Core
         private const Key UMBRELLA_06_KEY = Key.F7;
 
         public event UmbrellaKeyDown UmbrellaKeyDown;
+        public event UmbrellaKeyUp UmbreallaKeyUp;
+
         public event KeyDown KeyDown;
 
         public KeyboardManager(DependencyObject dependencyObject)
         {
             Keyboard.AddKeyDownHandler(dependencyObject, KeyEventHandler);
+            Keyboard.AddKeyUpHandler(dependencyObject, KeyUpHandler);
+        }
+
+        public IEnumerable<bool> UmbrellaStatuses
+        {
+            get
+            {
+                return new []
+                {
+                    Umbrella01, 
+                    Umbrella02, 
+                    Umbrella03, 
+                    Umbrella04, 
+                    Umbrella05, 
+                    Umbrella06
+                };
+            }
         }
 
         public bool Umbrella01
@@ -105,6 +126,19 @@ namespace Umbrella.Core
         protected virtual void OnKeyDown(KeyEventArgs args)
         {
             KeyDown handler = KeyDown;
+            if (handler != null) 
+                handler(this, args);
+        }
+
+        private void KeyUpHandler(object sender, KeyEventArgs e)
+        {
+            if (IsUmbrellaKey(e.Key))
+                OnUmbreallaKeyUp(e);
+        }
+
+        protected virtual void OnUmbreallaKeyUp(KeyEventArgs args)
+        {
+            UmbrellaKeyUp handler = UmbreallaKeyUp;
             if (handler != null) 
                 handler(this, args);
         }
