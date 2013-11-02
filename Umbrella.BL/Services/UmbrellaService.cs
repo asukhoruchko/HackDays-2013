@@ -8,7 +8,7 @@ namespace Umbrella.BL.Services
 
         public void Do()
         {
-            cdManager.OpenDrive();
+            cdManager.OpenDrives();
         }
     }
 }
