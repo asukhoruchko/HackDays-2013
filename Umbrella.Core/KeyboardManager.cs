@@ -3,7 +3,8 @@ using System.Windows.Input;
 
 namespace Umbrella.Core
 {
-    public delegate void UmbrellaKeyPressed(object sender, KeyEventArgs args);
+    public delegate void UmbrellaKeyDown(object sender, KeyEventArgs args);
+    public delegate void KeyDown(object sender, KeyEventArgs args);
     
     public class KeyboardManager
     {
@@ -14,7 +15,8 @@ namespace Umbrella.Core
         private const Key UMBRELLA_05_KEY = Key.F6;
         private const Key UMBRELLA_06_KEY = Key.F7;
 
-        public event UmbrellaKeyPressed UmbrellaKeyPressed;
+        public event UmbrellaKeyDown UmbrellaKeyDown;
+        public event KeyDown KeyDown;
 
         public KeyboardManager(DependencyObject dependencyObject)
         {
@@ -69,7 +71,7 @@ namespace Umbrella.Core
             }
         }
 
-        public bool IsUmbrellaKey(Key key)
+        private bool IsUmbrellaKey(Key key)
         {
             return key == UMBRELLA_01_KEY ||
                    key == UMBRELLA_02_KEY ||
@@ -87,15 +89,22 @@ namespace Umbrella.Core
         private void KeyEventHandler(object sender, KeyEventArgs e)
         {
             if (IsUmbrellaKey(e.Key))
-            {
-                OnUmbrellaKeyPressed(e);
-            }
+                OnUmbrellaKeyDown(e);
+            else
+                OnKeyDown(e);
         }
 
-        protected virtual void OnUmbrellaKeyPressed(KeyEventArgs args)
+        protected virtual void OnUmbrellaKeyDown(KeyEventArgs args)
         {
-            UmbrellaKeyPressed handler = UmbrellaKeyPressed;
+            UmbrellaKeyDown handler = UmbrellaKeyDown;
             
+            if (handler != null) 
+                handler(this, args);
+        }
+
+        protected virtual void OnKeyDown(KeyEventArgs args)
+        {
+            KeyDown handler = KeyDown;
             if (handler != null) 
                 handler(this, args);
         }
