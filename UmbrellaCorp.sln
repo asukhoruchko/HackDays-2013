@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbrella.UI", "Umbrella.UI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbrella.Core", "Umbrella.Core\Umbrella.Core.csproj", "{3B84C4A9-7159-4C59-9680-417E85446EFB}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Umbrella.DB", "Umbrella-DB\Umbrella.DB.sqlproj", "{A3991267-921D-40FA-934C-C3F2FD53F23B}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Umbrella.DB", "Umbrella.DB\Umbrella.DB.sqlproj", "{A3991267-921D-40FA-934C-C3F2FD53F23B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
