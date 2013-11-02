@@ -9,10 +9,10 @@ namespace Umbrella.BL.Services
 {
     public sealed class UserService
     {        
-        private readonly AuthenticationManager manager;
+        private readonly IAuthenticationManager manager;
         private readonly ISessionFactory sessionFactory;
 
-        public UserService(AuthenticationManager manager, ISessionFactory sessionFactory)
+        public UserService(IAuthenticationManager manager, ISessionFactory sessionFactory)
         {
             this.manager = manager;
             this.sessionFactory = sessionFactory;

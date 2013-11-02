@@ -2,7 +2,7 @@
 
 namespace Umbrella.Core
 {
-    public class AuthenticationManager
+    public class AuthenticationManager : IAuthenticationManager
     {
         public bool IsVIAcodeUser(string userName, string password)
         {

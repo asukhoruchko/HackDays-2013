@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Umbrella.BL.Services;
 using Umbrella.BL.Test.TestUtils;
-using Umbrella.Core;
 
 namespace Umbrella.BL.Test
 {
@@ -13,13 +11,13 @@ namespace Umbrella.BL.Test
         public void AuthenticateTest()
         {
             var userService = new UserService(
-                new AuthenticationManager(),
+                new TestAuthenticationManager(),
                 new TestSessionFactory());
 
-            var result = userService.Authenticate("asoukhoruchko", "6j%HG$f3");
+            var result = userService.Authenticate("pvasiliev", "blah");
 
-            Assert.AreEqual(result.Login, "asoukhoruchko");
-            Assert.AreEqual(result.LastName, "soukhoruchko");
+            Assert.AreEqual(result.Login, "pvasiliev");
+            Assert.AreEqual(result.LastName, "vasiliev");
             Assert.AreNotEqual(result.Id, 0);
         }
     }

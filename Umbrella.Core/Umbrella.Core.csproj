@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AuthenticationManager.cs" />
     <Compile Include="CdManager.cs" />
+    <Compile Include="IAuthenticationManager.cs" />
     <Compile Include="KeyboardManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
