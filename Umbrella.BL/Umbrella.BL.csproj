@@ -41,7 +41,17 @@
   <ItemGroup>
     <Compile Include="Entity\Operation.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Exceptions\InvalidUserException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\OperationService.cs" />
+    <Compile Include="Services\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Umbrella.Core\Umbrella.Core.csproj">
+      <Project>{3B84C4A9-7159-4C59-9680-417E85446EFB}</Project>
+      <Name>Umbrella.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
