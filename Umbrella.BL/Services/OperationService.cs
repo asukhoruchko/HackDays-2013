@@ -10,7 +10,8 @@ namespace Umbrella.BL.Services
     {
         private readonly ISessionFactory sessionFactory;
 
-        public OperationService(ISessionFactory sessionFactory)
+        public OperationService(
+            ISessionFactory sessionFactory)
         {
             this.sessionFactory = sessionFactory;
         }
@@ -25,17 +26,45 @@ namespace Umbrella.BL.Services
             }
         }
 
-        public void DoTake(User user)
+        public void Update(User user, int change)
+        {
+            if (change < 0)
+            {
+                DoTake(user, change * -1);
+            }
+            else if (change > 0)
+            {
+                DoReturn(user, change);    
+            }
+        }
+
+        private void DoTake(User user, int count)
         {
             using (var session = sessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
             {
                 var acccessor = DataAccessor.CreateInstance<OperationAccessor>(session);
 
-                acccessor.Insert(
-                    user.Id, 
-                    DateTime.Now,
-                    null);
+                acccessor.Add(
+                            user.Id,
+                            DateTime.Now,
+                            count);
+                    
+                transaction.CommitTransaction();
+            }
+        }
+
+        private void DoReturn(User user, int count)
+        {
+            using (var session = sessionFactory.OpenSession())
+            using (var transaction = session.BeginTransaction())
+            {
+                var acccessor = DataAccessor.CreateInstance<OperationAccessor>(session);
+
+                acccessor.Complete(
+                            user.Id,
+                            DateTime.Now,
+                            count);
 
                 transaction.CommitTransaction();
             }

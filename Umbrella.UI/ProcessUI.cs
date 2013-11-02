@@ -1,22 +1,32 @@
 ﻿using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Umbrella.BL.Database;
 using Umbrella.BL.Entity;
+using Umbrella.BL.Services;
 using Umbrella.Core;
 
 namespace Umbrella.UI
 {
     public class ProcessUI
     {
+        private readonly object locker;
+        
         private readonly CdManager cdManager = new CdManager();
+        private readonly OperationService operationService = new OperationService(new SessionFactory("default", 10));
 
         private readonly MainWindow window;
         private bool isClosed;
         private const int TIMER_PERIOD = 15*1000;
         private Thread timerThread;
 
+        private int umbrellasOnStart;
+        private User currentUser;
+
         public ProcessUI(MainWindow window)
         {
+            locker = new object();
+            
             this.window = window;
             window.KeyboardManager.KeyDown += OnKeyDown;
         }
@@ -38,19 +48,26 @@ namespace Umbrella.UI
 
         private void Finish()
         {
-            lock (this)
+            lock (locker)
             {
                 if (!isClosed)
                 {
                     cdManager.CloseDrives();
-                    timerThread.Abort();
+                    
+                    operationService.Update(currentUser, window.KeyboardManager.ExistingCount() - umbrellasOnStart);
                     isClosed = true;
+                    currentUser = null;
+                    umbrellasOnStart = 0;
+
+                    timerThread.Abort();
                 }
             }
         }
 
         public void Process(User user)
-        {
+        {            
+            currentUser = user;
+            umbrellasOnStart = window.KeyboardManager.ExistingCount();
             cdManager.OpenDrives();
             isClosed = false;
             WaitToFinish();
@@ -59,6 +76,7 @@ namespace Umbrella.UI
         private void WaitToFinish()
         {
             timerThread = new Thread(Timer);
+            timerThread.SetApartmentState(ApartmentState.STA);
             timerThread.Start();
         }
 

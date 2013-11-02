@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -42,6 +43,19 @@ namespace Umbrella.Core
                     Umbrella06
                 };
             }
+        }
+
+        public int ExistingCount()
+        {
+            return new[]
+                {
+                    Umbrella01, 
+                    Umbrella02, 
+                    Umbrella03, 
+                    Umbrella04, 
+                    Umbrella05, 
+                    Umbrella06
+                }.Count(u => u);
         }
 
         public bool Umbrella01

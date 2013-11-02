@@ -15,14 +15,14 @@ namespace Umbrella.BL.Test
             var result = operationService.GetTaken();
         }
 
-        [TestMethod]
-        public void TestAddOperation()
-        {
-            var userService = new UserService(new TestAuthenticationManager(), new TestSessionFactory());
-            var user = userService.Authenticate("pvasiliev", "");
+        //[TestMethod]
+        //public void TestAddOperation()
+        //{
+        //    var userService = new UserService(new TestAuthenticationManager(), new TestSessionFactory());
+        //    var user = userService.Authenticate("pvasiliev", "");
 
-            var operationService = new OperationService(new TestSessionFactory());
-            operationService.DoTake(user);
-        }
+        //    var operationService = new OperationService(new TestSessionFactory());
+        //    operationService.DoTake(user);
+        //}
     }
 }

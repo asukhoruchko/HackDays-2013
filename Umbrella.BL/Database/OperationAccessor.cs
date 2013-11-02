@@ -11,12 +11,16 @@ namespace Umbrella.BL.Database
     {
         //TODO: should be rewrited to use object instead of parameters
         [SprocName("p_add_operation")]
-        public abstract void Insert(
+        public abstract void Add(
             [ParamName("User_Id")] int userId, 
             [ParamName("Date_Taken")] DateTime dateTaken,
-            [ParamName("Date_Returned")] DateTime? dateReturned);
-        
+            [ParamName("count")] int count);
 
+        [SprocName("p_complete_operation")]
+        public abstract void Complete(
+            [ParamName("User_Id")] int userId,
+            [ParamName("Date_Returned")] DateTime dateTaken,
+            [ParamName("count")] int count);
 
         public List<Operation> GetListOfTaken()
         {
