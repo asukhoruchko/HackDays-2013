@@ -16,7 +16,7 @@ namespace Umbrella.Core
             foreach (char driveLetter in DRIVE_LETTERS)
                 ThreadPool.QueueUserWorkItem(OpenDrive, driveLetter);
 
-            Thread.Sleep(5 * 1000);
+            Thread.Sleep(1 * 1000);
         }
 
         public void CloseDrives()
@@ -24,7 +24,7 @@ namespace Umbrella.Core
             foreach (char driveLetter in DRIVE_LETTERS)
                 ThreadPool.QueueUserWorkItem(CloseDrive, driveLetter);
 
-            Thread.Sleep(5 * 1000);
+            Thread.Sleep(1 * 1000);
         }
 
         private static void OpenDrive(object data)
@@ -36,7 +36,12 @@ namespace Umbrella.Core
             
             int result = -1;
             while (result != 0)
+            {
                 result = mciSendString("set drive" + driveLetter + " door open", returnString, 0, 0);
+             
+                if (result != 0)
+                    Thread.Sleep(1*1000);
+            }
         }
 
         private void CloseDrive(object data)
@@ -49,7 +54,12 @@ namespace Umbrella.Core
 
             int result = -1;
             while (result != 0)
+            {
                 result = mciSendString("set drive" + driveLetter + " door closed", returnString, 0, 0);
+
+                if (result != 0)
+                    Thread.Sleep(1 * 1000);
+            }
         }
     }
 }

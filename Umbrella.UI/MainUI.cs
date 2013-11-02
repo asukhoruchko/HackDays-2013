@@ -18,14 +18,25 @@ namespace Umbrella.UI
         public void Init()
         {
             window.TakenListBox.ItemsSource = OperationService.GetTaken();
+            Select();
+        }
+
+        public void Select()
+        {
+            window.MessageLabel.Content = "Добро пожаловать в наш зонтомат.";
+            window.UmbrellaAppState = UmbrellaAppState.Main;
         }
 
         public void OnKeyDown(KeyEventArgs args)
         {
+            if (window.UmbrellaAppState != UmbrellaAppState.Main)
+                return;
+
             window.OperationLogGrid.Visibility = Visibility.Collapsed;
             window.LoginGrid.Visibility = Visibility.Visible;
-            window.UmbrellaAppState = UmbrellaAppState.Login;
-            window.LoginTextBox.Focus();
+
+            window.LoginUI.Select();
+
             args.Handled = true;
         }
     }

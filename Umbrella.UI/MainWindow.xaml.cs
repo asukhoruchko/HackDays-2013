@@ -13,25 +13,27 @@ namespace Umbrella.UI
 
     public partial class MainWindow : Window
     {
-        private readonly KeyboardManager keyboardManager;
+        public KeyboardManager KeyboardManager;
         public UmbrellaAppState UmbrellaAppState;
         
-        private readonly LoginUI loginUI;
-        private readonly MainUI mainUI;
+        public LoginUI LoginUI { get; private set; }
+        public MainUI MainUI { get; private set; }
+        public ProcessUI ProcessUI { get; private set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
-            loginUI = new LoginUI(this);
-            mainUI = new MainUI(this);
-
             UmbrellaAppState = UmbrellaAppState.Main;
-            mainUI.Init();
 
-            keyboardManager = new KeyboardManager(this);
-            keyboardManager.KeyDown += KeyboardManagerOnKeyDown;
-            keyboardManager.UmbrellaKeyDown += KeyboardManagerOnUmbrellaKeyDown;
+            KeyboardManager = new KeyboardManager(this);
+            KeyboardManager.KeyDown += KeyboardManagerOnKeyDown;
+            KeyboardManager.UmbrellaKeyDown += KeyboardManagerOnUmbrellaKeyDown;
+
+            LoginUI = new LoginUI(this);
+            MainUI = new MainUI(this);
+            ProcessUI = new ProcessUI(this);
+            MainUI.Init();
 
             WindowState = WindowState.Maximized;
         }
@@ -39,17 +41,10 @@ namespace Umbrella.UI
 
         private void KeyboardManagerOnUmbrellaKeyDown(object sender, KeyEventArgs args)
         {
-            switch (UmbrellaAppState)
+            if (UmbrellaAppState == UmbrellaAppState.Process)
             {
-                case UmbrellaAppState.Main:
-                    break;
-
-                case UmbrellaAppState.Login:
-                    break;
-
-                case UmbrellaAppState.Process:
-                    break;
-            }
+                // Добавить перерисовку зонтика.
+            }   
         }
 
         private void KeyboardManagerOnKeyDown(object sender, KeyEventArgs args)
@@ -57,14 +52,11 @@ namespace Umbrella.UI
             switch (UmbrellaAppState)
             {
                 case UmbrellaAppState.Main:
-                    mainUI.OnKeyDown(args);
+                    MainUI.OnKeyDown(args);
                     break;
 
                 case UmbrellaAppState.Login:
-                    loginUI.OnKeyDown(args);
-                    break;
-
-                case UmbrellaAppState.Process:
+                    LoginUI.OnKeyDown(args);
                     break;
             }
         }

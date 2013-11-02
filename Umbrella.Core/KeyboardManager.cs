@@ -94,11 +94,6 @@ namespace Umbrella.Core
                 OnKeyDown(e);
         }
 
-        private void SuppressEvent()
-        {
-            
-        }
-
         protected virtual void OnUmbrellaKeyDown(KeyEventArgs args)
         {
             UmbrellaKeyDown handler = UmbrellaKeyDown;
