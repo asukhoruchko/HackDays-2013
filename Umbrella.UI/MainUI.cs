@@ -1,12 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Umbrella.BL.Database;
 using Umbrella.BL.Services;
 
 namespace Umbrella.UI
 {
     public class MainUI
     {
-        public readonly OperationService OperationService = new OperationService();
+        public readonly OperationService OperationService = new OperationService(new SessionFactory("default", 10));
 
         private readonly MainWindow window;
 

@@ -3,6 +3,7 @@ using BLToolkit.Mapping;
 
 namespace Umbrella.BL.Entity
 {
+    [TableName("[dbo].[User]")]
     public sealed class User
     {
         [MapField("User_Id"), PrimaryKey, NonUpdatable]

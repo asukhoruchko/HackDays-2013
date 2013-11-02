@@ -61,5 +61,6 @@
     <Build Include="OperationLog.sql" />
     <Build Include="User.sql" />
     <Build Include="p_insert_user.sql" />
+    <Build Include="p_add_operation.sql" />
   </ItemGroup>
 </Project>
