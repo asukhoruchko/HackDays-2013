@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Umbrella.Core;
 
@@ -40,6 +39,7 @@ namespace Umbrella.UI
             MainUI.Init();
 
             WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
 
             UmbrellaStatusesImage.Source = imageComposer.Combine(KeyboardManager.UmbrellaStatuses);
         }
