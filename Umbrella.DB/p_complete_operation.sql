@@ -11,6 +11,7 @@ AS
 		    OperationLog ol
 	    where
 		    [user_id] = @user_id
+		    and Date_Returned is null
 	    order by
 		    date_taken 
     )

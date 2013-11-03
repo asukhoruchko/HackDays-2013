@@ -58,6 +58,7 @@ namespace Umbrella.UI
                     isClosed = true;
                     currentUser = null;
                     umbrellasOnStart = 0;
+                    window.TakenListBox.ItemsSource = window.MainUI.OperationService.GetTaken();
 
                     timerThread.Abort();
                 }
