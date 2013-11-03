@@ -5,7 +5,7 @@
         Title="Зонтоман : ПАКВУПСЗМУ - 1">
     <Window.Resources>
         <Style TargetType="{x:Type Control}" x:Key="baseStyle">
-            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontSize" Value="20" />
         </Style>
         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource baseStyle}"></Style>
         <Style TargetType="{x:Type Label}" BasedOn="{StaticResource baseStyle}"></Style>
